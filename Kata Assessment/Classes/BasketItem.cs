@@ -38,7 +38,18 @@ namespace Kata_Assessment.Classes
 
                 return (numberOfSatisfiedPromotions * promotionPrice) + (quantityNotDiscounted * product.unitPrice);  
             }
-            else 
+            else if (product.applicablePromotion.promotionDisplayName == "25% off for every 2 purchased together")
+            {
+                int discountFrequency = 2;
+                int quantityNotDiscounted = quantity % discountFrequency;
+                int quantityDiscounted = (quantity - (quantity % discountFrequency));
+                //NB: confirm with relevant people which way to round in case of fractions of pence
+                decimal discountPercentage = 25;
+
+                return (quantityDiscounted * product.unitPrice) * ((100-discountPercentage) / 100) + (quantityNotDiscounted * product.unitPrice);
+
+            }
+            else
             {
                 return 0;
             }
