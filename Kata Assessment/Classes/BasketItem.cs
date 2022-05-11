@@ -18,7 +18,30 @@ namespace Kata_Assessment.Classes
             this.quantity = quantity;
 
             //temporary
-            this.itemTotal = product.unitPrice * quantity;
+            //this.itemTotal = product.unitPrice * quantity;
+            this.itemTotal = getDiscountedPrice(product, quantity);
+        }
+
+        public static decimal getDiscountedPrice(Product product, int quantity)
+        {
+            if (product.applicablePromotion == null)
+            {
+                return product.unitPrice * quantity;
+            }
+            else if (product.applicablePromotion.promotionDisplayName == "3 for £40")
+            {
+                //discountFrequency added for similar promotions (e.g. 2 for £20) for code re-use
+                int discountFrequency = 3;
+                int quantityNotDiscounted = quantity % discountFrequency;
+                int numberOfSatisfiedPromotions = (quantity - (quantity % discountFrequency))/discountFrequency;
+                decimal promotionPrice = 40;
+
+                return (numberOfSatisfiedPromotions * promotionPrice) + (quantityNotDiscounted * product.unitPrice);  
+            }
+            else 
+            {
+                return 0;
+            }
         }
     }
 }

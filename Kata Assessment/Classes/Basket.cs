@@ -18,10 +18,10 @@ namespace Kata_Assessment.Classes
         public static void addItemToBasket(Basket basket, Product product, int quantityToAdd)
         {
             //if item already in basket, adjust its quantity
-            var basketItem = basket.basketItems.FindAll(x => x.product == product).FirstOrDefault();
+            var basketItem = basket.basketItems.FindAll(x => x.product.SKU == product.SKU).FirstOrDefault();
             if (basketItem != null)
             {
-                var itemIndex = basket.basketItems.FindIndex(x => x.product == product);
+                var itemIndex = basket.basketItems.FindIndex(x => x.product.SKU == product.SKU);
                 var currentQuantity = basket.basketItems[itemIndex].quantity;
                 //allow the basketItem constructor to handle the logic, treating new basket additions and edits as the same - KH
                 basket.basketItems.RemoveAt(itemIndex);

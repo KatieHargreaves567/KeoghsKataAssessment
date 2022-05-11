@@ -33,3 +33,19 @@ viewBasketContents(basket);
 product = getProductBySKU("C");
 addItemToBasket(basket, product, 3);
 viewBasketContents(basket);
+
+/*
+    Below code to test the first promotion
+*/
+addItemToBasket(basket, product, -3);
+product = getProductBySKU("B");
+addItemToBasket(basket, product, -5);
+
+
+addItemToBasket(basket, product, 1);
+addItemToBasket(basket, product, 1);
+viewBasketContents(basket);
+addItemToBasket(basket, product, 1);
+viewBasketContents(basket);
+addItemToBasket(basket, product, 10);
+viewBasketContents(basket);
