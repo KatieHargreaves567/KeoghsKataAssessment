@@ -67,5 +67,22 @@ namespace Kata_Assessment.Classes
             }
             Console.WriteLine("\n");
         }
+
+        public static void getBasketTotal(Basket basket)
+        {
+            decimal total = 0;
+            Console.WriteLine("Hello customer, the total for your basked (including promotions!) is: ");
+            for (int i = 0; i < basket.basketItems.Count; i++)
+            {
+                var quantity = basket.basketItems[i].quantity;
+                var product = basket.basketItems[i].product.displayName;
+                var itemTotal = basket.basketItems[i].itemTotal;
+
+                total += itemTotal;
+
+                Console.WriteLine(quantity + "x " + product + " at £" + itemTotal);
+            }
+            Console.WriteLine("£" + total);
+        }
     }
 }

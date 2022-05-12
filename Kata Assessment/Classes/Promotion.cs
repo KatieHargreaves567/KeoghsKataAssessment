@@ -12,7 +12,7 @@ namespace Kata_Assessment.Classes
         public string promotionDisplayName { get; set; }
 
         //Note: Promotions are typically time-sensitive so for scalability, it would be wise to include this field
-        bool promotionActive { get; set; }
+        public bool promotionActive { get; set; }
 
         public Promotion (int promotionID, string promotionDisplayName, bool promotionActive)
         {

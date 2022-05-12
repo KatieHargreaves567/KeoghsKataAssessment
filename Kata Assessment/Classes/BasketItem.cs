@@ -16,9 +16,6 @@ namespace Kata_Assessment.Classes
         {
             this.product = product;
             this.quantity = quantity;
-
-            //temporary
-            //this.itemTotal = product.unitPrice * quantity;
             this.itemTotal = getDiscountedPrice(product, quantity);
         }
 
@@ -28,7 +25,7 @@ namespace Kata_Assessment.Classes
             {
                 return product.unitPrice * quantity;
             }
-            else if (product.applicablePromotion.promotionDisplayName == "3 for £40")
+            if (product.applicablePromotion.promotionDisplayName == "3 for £40" && product.applicablePromotion.promotionActive)
             {
                 //discountFrequency added for similar promotions (e.g. 2 for £20) for code re-use
                 int discountFrequency = 3;
@@ -38,7 +35,7 @@ namespace Kata_Assessment.Classes
 
                 return (numberOfSatisfiedPromotions * promotionPrice) + (quantityNotDiscounted * product.unitPrice);  
             }
-            else if (product.applicablePromotion.promotionDisplayName == "25% off for every 2 purchased together")
+            else if (product.applicablePromotion.promotionDisplayName == "25% off for every 2 purchased together" && product.applicablePromotion.promotionActive)
             {
                 int discountFrequency = 2;
                 int quantityNotDiscounted = quantity % discountFrequency;
@@ -51,7 +48,7 @@ namespace Kata_Assessment.Classes
             }
             else
             {
-                return 0;
+                return product.unitPrice * quantity;
             }
         }
     }
